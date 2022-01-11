@@ -11,63 +11,84 @@ include('format/sidebar.php');
 
 <!-- home/managebooks -->
 <div class="container">
-    <h2>Add Book</h2>
+    <h2 class="display-6">Update Book</h2>
     <br>
-    <!-- <?php
-            if (isset($_SESSION['add'])) {
-                echo $_SESSION['add']; //displaying session message
-                unset($_SESSION['add']); //removing session message
-            }
-            ?> -->
-    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+    <?php
+
+    $book_id = $_GET['id'];
+
+    $sql = "SELECT * FROM books WHERE book_id = $book_id";
+
+    $res = mysqli_query($conn, $sql);
+
+
+    if ($res == true) {
+
+        $count = mysqli_num_rows($res);
+
+        if ($count == 1) {
+            $row = mysqli_fetch_assoc($res);
+            $book_id = $row['book_id'];
+            $title = $row['title'];
+            $author = $row['author'];
+            $publisher = $row['publisher'];
+            $year = $row['year'];
+            $category = $row['category'];
+        } else {
+            echo "<h1> no</h1>";
+        }
+    }
+
+
+
+    ?>
+    <form action="" method="post">
         <table class="table table-bordered table-striped">
             <tr>
-                <th>Title:</th>
+                <th class="h2" scope="row">Title:</th>
                 <td>
-                    <input type="text" name="title" placeholder="Enter book title">
+                    <input type="text" name="title" value="<?= $title ?>" class="form-control">
                 </td>
             </tr>
             <tr>
-                <td>Author:</td>
+                <th scope="row">Author:</th>
                 <td>
-                    <input type="text" name="author" placeholder="Enter books author">
+                    <input type=" text" name="author" value="<?= $author ?>" class="form-control">
                 </td>
             </tr>
             <tr>
-                <td>Publisher:</td>
+                <th scope="row">Publisher:</th>
                 <td>
-                    <input type=" text" name="publisher" placeholder="Enter publisher">
+                    <input type=" text" name="publisher" value="<?= $publisher ?>" class="form-control">
                 </td>
             </tr>
             <tr>
-                <td>Published Year:</td>
+                <th scope="row">Published Year:</th>
                 <td>
-                    <input type=" text" name="year" placeholder="Enter published year">
+                    <input type=" text" name="year" value="<?= $year ?>" class="form-control">
                 </td>
             </tr>
             <tr>
-                <td>Category:</td>
+                <th scope="row">Category:</th>
                 <td>
-                    <input type=" text" name="category" placeholder="Enter book category">
+                    <input type=" text" name="category" value="<?= $category ?>" class="form-control">
                 </td>
             </tr>
-            <!-- <tr>
-                <td colspan="2">
-                    <input type="submit" name="submit" value="Add Book" class="btn-secondary">
-                </td>
-            </tr> -->
 
         </table>
-        <input type="submit" name="submit" value="Add Book" class="btn-secondary">
+        <input type="hidden" name="book_id" value="<?= $book_id; ?>">
+        <input type="submit" name="submit" value="Save changes" class="btn-secondary">
     </form>
 
 </div>
 
 <?php
-include('format/footer.php');
+
 
 if (isset($_POST['submit'])) {
     // get data from form
+
+    $book_id = $_POST['book_id'];
     $title = $_POST['title'];
     $author = $_POST['author'];
     $publisher = ($_POST['publisher']);
@@ -75,31 +96,31 @@ if (isset($_POST['submit'])) {
     $category = $_POST['category'];
 
     // sql query to save data to database
-    $sql = "INSERT INTO books SET
-    title = '$title',
-    author = '$author',
-    publisher = '$publisher',
-    year = '$year',
-    category = '$category'
-        ";
+    $sql = "UPDATE books SET
+                title = '$title',
+                author = '$author',
+                publisher = '$publisher',
+                year = '$year',
+                category = '$category'
+                WHERE book_id = '$book_id'
+                ";
+
+    $res = mysqli_query($conn, $sql);
 
 
-    // executing query and saving data into database
-    $res = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-
-    // check whether the data is inserted or not 
     if ($res == TRUE) {
-        // echo "data inserted";
-        // create session var
-        $_SESSION['add'] = "admin added successfully";
-        // redirect page to manage admin
-        header("location: home.php");
+
+        echo "<script> alert('Book Update Successful') 
+            window.location.href='home.php'</script>";
     } else {
-        // echo "failed to insert";
-        // create session var
-        $_SESSION['add'] = "failed to add admin";
-        // redirect page to manage admin
-        header("location: add-book.php");
+
+
+
+        echo "<script> alert('Book Update Failed')
+        window.location.href='home.php'</script";
     }
 }
+
+
+include('format/footer.php');
 ?>

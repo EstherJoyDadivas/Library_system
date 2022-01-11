@@ -14,12 +14,12 @@ include('format/sidebar.php');
     <h2>Manage Books</h2>
     <input class="form-control" id="myInput" type="text" placeholder="Search..">
     <br>
-    <a href="add-book.php" class="btn">Add Book</a>
+    <a href="add-book.php" class="btn btn-info">Add Book</a>
     <?php
-    if (isset($_SESSION['add'])) {
-        echo $_SESSION['add']; //displaying session message
-        unset($_SESSION['add']); //removing session message
-    }
+    // if (isset($_SESSION['add'])) {
+    //     echo $_SESSION['add']; //displaying session message
+    //     unset($_SESSION['add']); //removing session message
+    // }
     if (isset($_SESSION['delete'])) {
         echo $_SESSION['delete']; //displaying session message
         unset($_SESSION['delete']); //removing session message

@@ -16,7 +16,15 @@ if ($res == true) {
     // successful deletion
     // echo "ADMIN DELETED";
     // create session var to display msh
-    $_SESSION['delete'] = '<div class="success">admin deleted succesfulyy</div>';
+    echo "
+    <script>
+    alert('Book deleted')
+    </script>";
+    // $_SESSION['delete'] = '<div class="success">admin deleted succesfulyy</div>';
+    $_SESSION['delete'] =  "
+    <script>
+    alert('Book deleted')
+    </script>";
     header('location: home.php');
 } else {
     echo "DELETION FAILED";
