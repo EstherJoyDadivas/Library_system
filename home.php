@@ -14,9 +14,25 @@ include('format/sidebar.php');
     <h2>Manage Books</h2>
     <input class="form-control" id="myInput" type="text" placeholder="Search..">
     <br>
+    <a href="add-book.php" class="btn">Add Book</a>
+    <?php
+    if (isset($_SESSION['add'])) {
+        echo $_SESSION['add']; //displaying session message
+        unset($_SESSION['add']); //removing session message
+    }
+    if (isset($_SESSION['delete'])) {
+        echo $_SESSION['delete']; //displaying session message
+        unset($_SESSION['delete']); //removing session message
+    }
+    if (isset($_SESSION['update'])) {
+        echo $_SESSION['update']; //displaying session message
+        unset($_SESSION['update']); //removing session message
+    }
+    ?>
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
+                <th>No.</th>
                 <th>Book Title</th>
                 <th>Author</th>
                 <th>Publisher</th>
@@ -51,21 +67,8 @@ include('format/sidebar.php');
 
             ?>
 
-                        <!-- <tr>
-                            <td>John</td>
-                            <td>Doe</td>
-                            <td>john@example.com</td>
-                            <td>Doe</td>
-                            <td>john@example.com</td>
-                            <td>
-                                <button class="btn-primary"><a href="add-book.php?>?id=<?php echo $id ?>"> Update</a></button>
-                                <button class="btn-secondary"><a href="delete-book.php?id=<?php echo $id ?>">Delete</a></button>
-                            </td>
-
-                        </tr> -->
                         <tr>
                             <td><?php echo $sn++ ?>.</td>
-                            <td><?php echo $author ?></td>
                             <td><?php echo $title ?></td>
                             <td><?php echo $author ?></td>
                             <td><?php echo $publisher ?></td>
@@ -73,10 +76,9 @@ include('format/sidebar.php');
                             <td><?php echo $category ?></td>
 
                             <td>
-                                <!-- <button class="btn-info"><a href="add-book.php?>?id=<?php echo $book_id ?>"> Update</a></button>
-                                <button class="btn-secondary"><a href=" delete-book.php?id=<?php echo $book_id ?>">Delete</a></button> -->
-                                <a href="add-book.php?>?id=<?php echo $book_id ?>" class="btn btn-success btn-sm"> Update</a>
-                                <a href=" delete-book.php?id=<?php echo $book_id ?>" class="btn btn-danger btn-sm">Delete</a>
+
+                                <a href="update-book.php?id=<?= $book_id ?>" class="btn btn-success btn-sm"> Update</a>
+                                <a href="delete-book.php?id=<?= $book_id ?>" class="btn btn-danger btn-sm">Delete</a>
                             </td>
 
 

@@ -1,6 +1,6 @@
 <?php
 // start session
-// session_start();
+session_start();
 // create constants to store non repeating values
 // define('SITEURL', 'http://localhost/web-design-course-restaurant/');
 define('LOCALHOST', 'localhost');
