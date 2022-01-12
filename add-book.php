@@ -19,25 +19,25 @@ include('format/sidebar.php');
             <tr>
                 <th>Title:</th>
                 <td>
-                    <input type="text" name="title" placeholder="Enter book title" required>
+                    <input type="text" name="title" class="form-control" placeholder="Enter book title" required>
                 </td>
             </tr>
             <tr>
                 <td>Author:</td>
                 <td>
-                    <input type="text" name="author" placeholder="Enter books author" required>
+                    <input type="text" name="author" class="form-control" placeholder="Enter books author" required>
                 </td>
             </tr>
             <tr>
                 <td>Publisher:</td>
                 <td>
-                    <input type=" text" name="publisher" placeholder="Enter publisher" required>
+                    <input type=" text" name="publisher" class="form-control" placeholder="Enter publisher" required>
                 </td>
             </tr>
             <tr>
                 <td>Published Year:</td>
                 <td>
-                    <input type=" text" name="year" placeholder="Enter published year" required>
+                    <input type=" text" name="year" class="form-control" placeholder="Enter published year" required>
                 </td>
             </tr>
             <tr>

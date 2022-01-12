@@ -14,6 +14,7 @@ include('format/sidebar.php');
     <h2>Borrow Transactions</h2>
     <input class="form-control" id="myInput" type="text" placeholder="Search..">
     <br>
+    <a href="add-borrow.php" class="btn btn-info">Add Transaction</a>
     <table class="table table-bordered table-striped">
         <thead>
             <tr>

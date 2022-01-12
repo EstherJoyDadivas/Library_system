@@ -28,7 +28,4 @@ if ($res == true) {
     header('location: home.php');
 } else {
     echo "DELETION FAILED";
-    // create session var to display msh
-    // $_SESSION['delete'] = '<div class="error">ADMIN DELETION FAILED</div>';
-    // header('location: home.php');
 }

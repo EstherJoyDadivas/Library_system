@@ -12,7 +12,7 @@ include('format/sidebar.php');
 <!-- home/managebooks -->
 <div class="container">
     <h2>Manage Books</h2>
-    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    <input class="form-control" id="search" type="text" placeholder="Search..">
     <br>
     <a href="add-book.php" class="btn btn-info">Add Book</a>
     <?php
