@@ -17,13 +17,6 @@ include('format/sidebar.php');
     <br>
     <br>
     <br>
-    <?php
-    if (isset($_SESSION['delete'])) {
-        echo $_SESSION['delete']; //displaying session message
-        unset($_SESSION['delete']); //removing session message
-    }
-
-    ?>
     <div id="result">
         <table class="table table-bordered table-striped" id="table-data">
 

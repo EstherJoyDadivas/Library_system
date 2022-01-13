@@ -3,13 +3,6 @@ include('format/header.php');
 include('format/sidebar.php');
 ?>
 
-<!-- ============================================================== -->
-<!-- Start Page Content here -->
-<!-- ============================================================== -->
-
-
-
-<!-- home/managebooks -->
 <div class="container">
     <h2 class="display-6">Update Book</h2>
     <br>
@@ -38,8 +31,6 @@ include('format/sidebar.php');
             echo "<h1> no</h1>";
         }
     }
-
-
 
     ?>
     <form action="" method="post">

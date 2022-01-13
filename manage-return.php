@@ -20,9 +20,6 @@ if ($result == TRUE) {
 
     if ($count > 0) {
 
-
-
-        // if (mysqli_num_rows($result) > 0) {
         $output .= '<div class="table-responsive">
 					<table class="table table-bordered table-striped">
 					<thead>
@@ -37,7 +34,6 @@ if ($result == TRUE) {
 						</tr>
 						</thead>
                         <tbody>';
-        // while ($row = mysqli_fetch_array($result)) {
         while ($rows = mysqli_fetch_assoc($result)) {
 
             $tran_id = $rows['tran_id'];
@@ -57,7 +53,7 @@ if ($result == TRUE) {
 				<td>' . $date_due . '</td>
                 <td>' . $date_returned . '</td>
 				<td>
-				<a href="tran-details.php?id=' . $tran_id . '" class="btn btn-success btn-sm"> Details</a>
+				<a href="details-return.php?id=' . $tran_id . '" class="btn btn-success btn-sm"> Details</a>
 			</td>
 			</tr>
 		';

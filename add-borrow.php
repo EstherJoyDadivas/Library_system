@@ -97,17 +97,18 @@ if (isset($_POST['Borrow'])) {
                 <br>
                 <table class="table table-bordered table-striped">
                     <tr>
-                        <th>Student No:</th>
-                        <td>
-                            <input type="text" value="<?php echo isset($_POST['student_id']) ? $student_id : ''; ?>" placeholder="Enter Student Number" name="student_id" class="form-control" required>
-                        </td>
-                    </tr>
-                    <tr>
                         <th>Borrowed Date:</th>
                         <td>
                             <input type="text" name="date_borrowed" value="<?php echo $date; ?>" name="borrow_date" class="form-control" readonly>
                         </td>
                     </tr>
+                    <tr>
+                        <th>Student No:</th>
+                        <td>
+                            <input type="text" value="<?php echo isset($_POST['student_id']) ? $student_id : ''; ?>" placeholder="Enter Student Number" name="student_id" class="form-control" required>
+                        </td>
+                    </tr>
+
                 </table>
         </div>
         <div class="col">
@@ -115,19 +116,19 @@ if (isset($_POST['Borrow'])) {
             <br>
 
             <table class="table table-bordered table-striped">
-                <tr>
-                    <th>Book No:</th>
-                    <td>
-                        <input type="text" value="<?php echo isset($_POST['book_id']) ? $book_id : ''; ?>" placeholder="Enter Student Number" name="book_id" class="form-control" required>
-                    </td>
-                </tr>
+
                 <tr>
                     <th>Due Date:</th>
                     <td>
                         <input type="date" value="<?php echo isset($_POST['date_due']) ? $_POST['date_due'] : ''; ?>" placeholder="Enter Student Number" name="date_due" class="form-control" required>
                     </td>
                 </tr>
-
+                <tr>
+                    <th>Book No:</th>
+                    <td>
+                        <input type="text" value="<?php echo isset($_POST['book_id']) ? $book_id : ''; ?>" placeholder="Enter Student Number" name="book_id" class="form-control" required>
+                    </td>
+                </tr>
 
             </table>
 
@@ -141,9 +142,6 @@ if (isset($_POST['Borrow'])) {
     <div class="row">
         <div class="col">
 
-
-            <table class="table table-bordered table-striped">
-            </table>
             <table class="table table-bordered table-striped">
                 <tr>
                     <th>Student First Name: </th>
