@@ -12,87 +12,53 @@ include('format/sidebar.php');
 <!-- home/managebooks -->
 <div class="container">
     <h2>Manage Books</h2>
-    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+
+    <input class="form-control" id="search_text" name="search_text" type="text" placeholder="Search..">
     <br>
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>Book Title</th>
-                <th>Author</th>
-                <th>Publisher</th>
-                <th>Published Year</th>
-                <th>Category</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody id="myTable">
-            <?php
-            //query to get all admin
-            $sql = "SELECT * FROM books";
-            // execute query
-            $res = mysqli_query($conn, $sql);
 
-            if ($res == TRUE) {
+    <a href="add-book.php" class="btn btn-info">Add Book</a>
+    <br>
+    <br>
+    <?php
+    if (isset($_SESSION['delete'])) {
+        echo $_SESSION['delete']; //displaying session message
+        unset($_SESSION['delete']); //removing session message
+    }
 
-                $count = mysqli_num_rows($res);
+    ?>
+    <div id="result">
+        <table class="table table-bordered table-striped" id="table-data">
 
-                $sn = 1;
+        </table>
 
-                if ($count > 0) {
-
-                    while ($rows = mysqli_fetch_assoc($res)) {
-
-                        $book_id = $rows['book_id'];
-                        $title = $rows['title'];
-                        $author = $rows['author'];
-                        $publisher = $rows['publisher'];
-                        $year = $rows['year'];
-                        $category = $rows['category'];
-
-            ?>
-
-                        <!-- <tr>
-                            <td>John</td>
-                            <td>Doe</td>
-                            <td>john@example.com</td>
-                            <td>Doe</td>
-                            <td>john@example.com</td>
-                            <td>
-                                <button class="btn-primary"><a href="add-book.php?>?id=<?php echo $id ?>"> Update</a></button>
-                                <button class="btn-secondary"><a href="delete-book.php?id=<?php echo $id ?>">Delete</a></button>
-                            </td>
-
-                        </tr> -->
-                        <tr>
-                            <td><?php echo $sn++ ?>.</td>
-                            <td><?php echo $author ?></td>
-                            <td><?php echo $title ?></td>
-                            <td><?php echo $author ?></td>
-                            <td><?php echo $publisher ?></td>
-                            <td><?php echo $year ?></td>
-                            <td><?php echo $category ?></td>
-
-                            <td>
-                                <!-- <button class="btn-info"><a href="add-book.php?>?id=<?php echo $book_id ?>"> Update</a></button>
-                                <button class="btn-secondary"><a href=" delete-book.php?id=<?php echo $book_id ?>">Delete</a></button> -->
-                                <a href="add-book.php?>?id=<?php echo $book_id ?>" class="btn btn-success btn-sm"> Update</a>
-                                <a href=" delete-book.php?id=<?php echo $book_id ?>" class="btn btn-danger btn-sm">Delete</a>
-                            </td>
-
-
-                        </tr>
-            <?php
-                    }
-                } else {
-                    //we dont have data in db
-                }
-            }
-            ?>
-        </tbody>
-    </table>
-
-
+    </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        load_data();
 
+        function load_data(query) {
+            $.ajax({
+                url: "manage-book.php",
+                method: "post",
+                data: {
+                    query: query
+                },
+                success: function(data) {
+                    $('#result').html(data);
+                }
+            });
+        }
+
+        $('#search_text').keyup(function() {
+            var search = $(this).val();
+            if (search != '') {
+                load_data(search);
+            } else {
+                load_data();
+            }
+        });
+    });
+</script>
 <?php
 include('format/footer.php'); ?>

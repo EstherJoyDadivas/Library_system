@@ -11,58 +11,52 @@ include('format/sidebar.php');
 
 <!-- home/managebooks -->
 <div class="container">
-    <h2>Returned Transactions</h2>
-    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    <h2>Return Details</h2>
+
+    <input class="form-control" id="search_text" name="search_text" type="text" placeholder="Search..">
     <br>
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>Transaction ID</th>
-                <th>Student Name</th>
-                <th>Book Title</th>
-                <th>Date Borrowed</th>
-                <th>Due Date</th>
-                <th>Date returned</th>
+    <br>
+    <br>
+    <?php
+    if (isset($_SESSION['delete'])) {
+        echo $_SESSION['delete']; //displaying session message
+        unset($_SESSION['delete']); //removing session message
+    }
 
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody id="myTable">
-            <tr>
-                <td>1</td>
-                <td>John</td>
-                <td>Doe</td>
-                <td>john@example.com</td>
-                <td>Date</td>
-                <td>Doe</td>
+    ?>
+    <div id="result">
+        <table class="table table-bordered table-striped" id="table-data">
 
-                <td>
-                    <button class="btn-primary">Details</button>
-                    <button class="btn-secondary">Delete</button>
+        </table>
 
-                </td>
-
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Mary</td>
-                <td>Moe</td>
-                <td>mary@mail.com</td>
-                <td>mary@mail.com</td>
-                <td>Doe</td>
-                <td>
-                    <button class="btn-primary">Details</button>
-                    <button class="btn-secondary">Delete</button>
-
-                </td>
-
-
-            </tr>
-        </tbody>
-    </table>
-
-
+    </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        load_data();
 
+        function load_data(query) {
+            $.ajax({
+                url: "manage-return.php",
+                method: "post",
+                data: {
+                    query: query
+                },
+                success: function(data) {
+                    $('#result').html(data);
+                }
+            });
+        }
+
+        $('#search_text').keyup(function() {
+            var search = $(this).val();
+            if (search != '') {
+                load_data(search);
+            } else {
+                load_data();
+            }
+        });
+    });
+</script>
 <?php
 include('format/footer.php'); ?>

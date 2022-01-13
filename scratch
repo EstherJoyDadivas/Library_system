@@ -1,0 +1,61 @@
+      <thead>
+          <tr>
+              <th>No.</th>
+              <th>Book Title</th>
+              <th>Author</th>
+              <th>Publisher</th>
+              <th>Published Year</th>
+              <th>Category</th>
+              <th>Actions</th>
+          </tr>
+      </thead>
+      <tbody id="output">
+          <?php
+            //query to get all admin
+            $sql = "SELECT * FROM books";
+            // execute query
+            $res = mysqli_query($conn, $sql);
+
+            if ($res == TRUE) {
+
+                $count = mysqli_num_rows($res);
+
+                $sn = 1;
+
+                if ($count > 0) {
+
+                    while ($rows = mysqli_fetch_assoc($res)) {
+
+                        $book_id = $rows['book_id'];
+                        $title = $rows['title'];
+                        $author = $rows['author'];
+                        $publisher = $rows['publisher'];
+                        $year = $rows['year'];
+                        $category = $rows['category'];
+
+            ?>
+
+                      <tr>
+                          <td><?php echo $sn++ ?>.</td>
+                          <td><?php echo $title ?></td>
+                          <td><?php echo $author ?></td>
+                          <td><?php echo $publisher ?></td>
+                          <td><?php echo $year ?></td>
+                          <td><?php echo $category ?></td>
+
+                          <td>
+
+                              <a href="update-book.php?id=<?= $book_id ?>" class="btn btn-success btn-sm"> Update</a>
+                              <a href="delete-book.php?id=<?= $book_id ?>" class="btn btn-danger btn-sm">Delete</a>
+                          </td>
+
+
+                      </tr>
+          <?php
+                    }
+                } else {
+                    //we dont have data in db
+                }
+            }
+            ?>
+      </tbody>

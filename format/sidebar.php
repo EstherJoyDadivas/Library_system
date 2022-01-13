@@ -1,4 +1,3 @@
-<!--- Sidemenu -->
 <ul class="side-nav">
     <li class="side-nav-item">
         <a href="home.php" class="side-nav-link">

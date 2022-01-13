@@ -13,42 +13,37 @@ include('format/sidebar.php');
 <div class="container">
     <h2>Add Book</h2>
     <br>
-    <!-- <?php
-            if (isset($_SESSION['add'])) {
-                echo $_SESSION['add']; //displaying session message
-                unset($_SESSION['add']); //removing session message
-            }
-            ?> -->
-    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+
+    <form action="add-book.php" method="POST">
         <table class="table table-bordered table-striped">
             <tr>
                 <th>Title:</th>
                 <td>
-                    <input type="text" name="title" placeholder="Enter book title">
+                    <input type="text" name="title" class="form-control" placeholder="Enter book title" required>
                 </td>
             </tr>
             <tr>
                 <td>Author:</td>
                 <td>
-                    <input type="text" name="author" placeholder="Enter books author">
+                    <input type="text" name="author" class="form-control" placeholder="Enter books author" required>
                 </td>
             </tr>
             <tr>
                 <td>Publisher:</td>
                 <td>
-                    <input type=" text" name="publisher" placeholder="Enter publisher">
+                    <input type=" text" name="publisher" class="form-control" placeholder="Enter publisher" required>
                 </td>
             </tr>
             <tr>
                 <td>Published Year:</td>
                 <td>
-                    <input type=" text" name="year" placeholder="Enter published year">
+                    <input type=" text" name="year" class="form-control" placeholder="Enter published year" required>
                 </td>
             </tr>
             <tr>
                 <td>Category:</td>
                 <td>
-                    <input type=" text" name="category" placeholder="Enter book category">
+                    <input type=" text" name="category" placeholder="Enter book category" required>
                 </td>
             </tr>
             <!-- <tr>
@@ -67,6 +62,7 @@ include('format/sidebar.php');
 include('format/footer.php');
 
 if (isset($_POST['submit'])) {
+
     // get data from form
     $title = $_POST['title'];
     $author = $_POST['author'];
@@ -82,24 +78,17 @@ if (isset($_POST['submit'])) {
     year = '$year',
     category = '$category'
         ";
-
-
-    // executing query and saving data into database
     $res = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 
     // check whether the data is inserted or not 
     if ($res == TRUE) {
-        // echo "data inserted";
-        // create session var
-        $_SESSION['add'] = "admin added successfully";
-        // redirect page to manage admin
-        header("location: home.php");
+        echo "<script> alert('Book Added succesfully') 
+        window.location.href='add-book.php'</script>";
+
+        // exit();
     } else {
-        // echo "failed to insert";
-        // create session var
-        $_SESSION['add'] = "failed to add admin";
-        // redirect page to manage admin
-        header("location: add-book.php");
+        echo "Failed";
     }
 }
+
 ?>
