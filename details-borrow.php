@@ -7,7 +7,7 @@ include('format/sidebar.php');
 $tran_id = $_GET['id'];
 
 $sql = "SELECT * FROM transaction
-WHERE tran_id = '$tran_id' AND status = 'returned'";
+WHERE tran_id = '$tran_id' AND status = 'borrowed'";
 
 $res = mysqli_query($conn, $sql);
 if ($res == true) {
@@ -20,7 +20,6 @@ if ($res == true) {
         $book_id = $rows['book_id'];
         $student_id = $rows['student_id'];
         $date_borrowed = $rows['date_borrowed'];
-        $date_returned = $rows['date_returned'];
         $date_due = $rows['date_due'];
 
 
@@ -82,11 +81,11 @@ if ($res == true) {
                 <table class="table table-bordered table-striped">
                     <tr>
                         <th>Borrowed Date:</th>
-                        <td><?php echo $date_returned  ?> </td>
+                        <td><?php echo $date_borrowed  ?> </td>
                     </tr>
                     <tr>
                         <th>Returned Date:</th>
-                        <td><?php echo $date_borrowed  ?> </td>
+                        <td> </td>
                     </tr>
                     <tr>
                         <th>Student No:</th>

@@ -11,12 +11,12 @@ include('format/sidebar.php');
 
 <!-- home/managebooks -->
 <div class="container">
-    <h2>Admin Accounts</h2>
+    <h2>Student Accounts</h2>
 
     <input class="form-control" id="search_text" name="search_text" type="text" placeholder="Search..">
     <br>
 
-    <a href="add-admin.php" class="btn btn-info">Add Admin</a>
+    <a href="add-student.php" class="btn btn-info">Add Student</a>
     <br>
     <br>
     <?php
@@ -39,7 +39,7 @@ include('format/sidebar.php');
 
         function load_data(query) {
             $.ajax({
-                url: "manage-admin.php",
+                url: "manage-student.php",
                 method: "post",
                 data: {
                     query: query

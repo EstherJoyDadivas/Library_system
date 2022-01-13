@@ -1,11 +1,11 @@
 <?php
 require('dbconnect.php');
-$book_id = $_GET['id'];
+$student_id = $_GET['id'];
 
 if (isset($_GET['id'])) {
 
 
-    $sql = "DELETE FROM books WHERE book_id = $book_id";
+    $sql = "DELETE FROM student WHERE student_id = $student_id";
 
     $res = mysqli_query($conn, $sql);
 
@@ -13,13 +13,13 @@ if (isset($_GET['id'])) {
 
         echo "
     <script>
-    alert('Book deleted')
+    alert('Student deleted')
     </script>";
         $_SESSION['delete'] =  "
     <script>
-    alert('Book deleted')
+    alert('Student deleted')
     </script>";
-        header('location: home.php');
+        header('location: students.php');
     } else {
         echo "DELETION FAILED";
     }

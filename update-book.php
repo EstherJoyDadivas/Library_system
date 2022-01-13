@@ -79,7 +79,6 @@ include('format/sidebar.php');
 if (isset($_POST['submit'])) {
     // get data from form
 
-    $book_id = $_POST['book_id'];
     $title = $_POST['title'];
     $author = $_POST['author'];
     $publisher = ($_POST['publisher']);

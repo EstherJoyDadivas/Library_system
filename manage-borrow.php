@@ -54,7 +54,7 @@ if ($result == TRUE) {
 				<td>' . $date_borrowed . '</td>
 				<td>' . $date_due . '</td>
 				<td>
-				<a href="tran-details.php?id=' . $tran_id . '" class="btn btn-success btn-sm"> Details</a>
+				<a href="details-borrow.php?id=' . $tran_id . '" class="btn btn-success btn-sm"> Details</a>
 				<a href="return-book.php?id=' . $tran_id . '" class="btn btn-danger btn-sm">Return</a>
 			</td>
 			</tr>
