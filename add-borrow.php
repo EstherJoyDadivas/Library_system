@@ -3,90 +3,207 @@ include('format/header.php');
 include('format/sidebar.php');
 ?>
 
-<!-- ============================================================== -->
-<!-- Start Page Content here -->
-<!-- ============================================================== -->
+<?php
+$date = date('Y-m-d');
+
+$firstname = '';
+$lastname = '';
+$course = '';
+$section = '';
+$book_id = '';
+$title = '';
+$author = '';
+$publisher = '';
+$year = '';
+$category = '';
+
+if (isset($_POST['Check'])) {
+
+    if (isset($_POST['student_id'])) {
+        $student_id = $_POST['student_id'];
+
+        $sql = "SELECT * FROM student WHERE student_id = $student_id";
+
+        $res = mysqli_query($conn, $sql);
 
 
+        if ($res == true) {
 
+            $count = mysqli_num_rows($res);
+            if ($count == 1) {
+                $row = mysqli_fetch_assoc($res);
+                $student_id = $row['student_id'];
+                $firstname = $row['firstname'];
+                $lastname = $row['lastname'];
+                $course = $row['course'];
+                $section = $row['section'];
+            }
+        }
+    }
+
+    if (isset($_POST['book_id'])) {
+        $book_id = $_POST['book_id'];
+
+        $sql = "SELECT * FROM books WHERE book_id = $book_id";
+
+        $res = mysqli_query($conn, $sql);
+
+
+        if ($res == true) {
+
+            $count = mysqli_num_rows($res);
+            if ($count == 1) {
+                $row = mysqli_fetch_assoc($res);
+                $book_id = $row['book_id'];
+                $title = $row['title'];
+                $author = $row['author'];
+                $publisher = $row['publisher'];
+                $year = $row['year'];
+                $category = $row['category'];
+            }
+        }
+    }
+}
+
+if (isset($_POST['Borrow'])) {
+
+    $student_id = $_POST['student_id'];
+    $book_id = $_POST['book_id'];
+    $date_due = $_POST['date_due'];
+
+    $sql = "INSERT INTO transaction SET
+    book_id = '$book_id',
+    student_id = '$student_id',
+    date_due = '$date_due',
+    status = 'borrowed'
+        ";
+    $res = mysqli_query($conn, $sql);
+    if ($res == TRUE) {
+        echo "<script> alert('Transaction Added succesfully') 
+        window.location.href='borrow.php'
+        </script>";
+    } else {
+        echo "Failed " . mysqli_error($conn);
+    }
+}
+?>
 <!-- home/managebooks -->
 <div class="container-fluid">
     <h2>Add Transaction</h2>
     <div class="row">
+
         <div class="col">
-            <h2>Add Book</h2>
-            <br>
-            <input class="form-control" id="myInput" type="text" placeholder="Search student">
-            <br>
-            <form action="add-book.php" method="POST">
+            <form action="" method="POST">
+                <br>
                 <table class="table table-bordered table-striped">
                     <tr>
                         <th>Student No:</th>
                         <td>
-                            <input type="text" name="title" class="form-control" readonly>
+                            <input type="text" value="<?php echo isset($_POST['student_id']) ? $student_id : ''; ?>" placeholder="Enter Student Number" name="student_id" class="form-control" required>
                         </td>
                     </tr>
                     <tr>
-                        <td>Last Name</td>
+                        <th>Borrowed Date:</th>
                         <td>
-                            <input type="text" name="author" class="form-control" placeholder="Enter books author" required>
+                            <input type="text" name="date_borrowed" value="<?php echo $date; ?>" name="borrow_date" class="form-control" readonly>
                         </td>
                     </tr>
-
                 </table>
-                <input type="submit" name="submit" value="Confirm Student" class="btn-secondary">
-            </form>
+        </div>
+        <div class="col">
+
             <br>
-            <h2>Student Info</h2>
-            <br>
+
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>Book No:</th>
+                    <td>
+                        <input type="text" value="<?php echo isset($_POST['book_id']) ? $book_id : ''; ?>" placeholder="Enter Student Number" name="book_id" class="form-control" required>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Due Date:</th>
+                    <td>
+                        <input type="date" value="<?php echo isset($_POST['date_due']) ? $_POST['date_due'] : ''; ?>" placeholder="Enter Student Number" name="date_due" class="form-control" required>
+                    </td>
+                </tr>
+
+
+            </table>
+
+
+
+        </div>
+    </div>
+    <input type="submit" name="Check" value="Check" class="btn-secondary">
+    <input type="submit" name="Borrow" value="Borrow" class="btn-secondary">
+    </form>
+    <div class="row">
+        <div class="col">
+
+
             <table class="table table-bordered table-striped">
             </table>
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>Student First Name: </th>
+                    <td><?php echo $firstname  ?> </td>
+                </tr>
+                <tr>
+                    <th>Student Last Name: </th>
+                    <td><?php echo $lastname  ?> </td>
+                </tr>
+                <tr>
+                    <th>Course: </th>
+                    <td><?php echo $course  ?> </td>
+                </tr>
+                <tr>
+                    <th>Section: </th>
+                    <td><?php echo $section  ?> </td>
+                </tr>
+
+            </table>
+
+
 
         </div>
 
         <div class="col">
-            <h2>Add Book</h2>
+
             <br>
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>Title:</th>
 
-            <form action="add-book.php" method="POST">
-                <table class="table table-bordered table-striped">
-                    <tr>
-                        <th>Title:</th>
-                        <td>
-                            <input type="text" name="title" class="form-control" placeholder="Enter book title" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Author:</td>
-                        <td>
-                            <input type="text" name="author" class="form-control" placeholder="Enter books author" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Publisher:</td>
-                        <td>
-                            <input type=" text" name="publisher" class="form-control" placeholder="Enter publisher" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Published Year:</td>
-                        <td>
-                            <input type=" text" name="year" class="form-control" placeholder="Enter published year" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Category:</td>
-                        <td>
-                            <input type=" text" name="category" class="form-control" placeholder="Enter book category" required>
-                        </td>
-                    </tr>
+                    <td><?php echo $title  ?> </td>
+
+                </tr>
+                <tr>
+                    <td>Author:</td>
+                    <td><?php echo $author  ?> </td>
+                </tr>
+                <tr>
+                    <td>Publisher:</td>
+                    <td><?php echo $publisher  ?> </td>
+                </tr>
+                <tr>
+                    <td>Published Year:</td>
+                    <td><?php echo $year  ?> </td>
+                </tr>
+                <tr>
+                    <td>Category:</td>
+                    <td><?php echo $category  ?></td>
+                </tr>
 
 
-                </table>
-                <input type="submit" name="submit" value="Add Book" class="btn-secondary">
-            </form>
+            </table>
+
+
         </div>
+
     </div>
+</div>
+
 </div>
 <?php
 include('format/footer.php'); ?>

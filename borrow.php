@@ -11,57 +11,54 @@ include('format/sidebar.php');
 
 <!-- home/managebooks -->
 <div class="container">
-    <h2>Borrow Transactions</h2>
-    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    <h2>Transactions</h2>
+
+    <input class="form-control" id="search_text" name="search_text" type="text" placeholder="Search..">
     <br>
+
     <a href="add-borrow.php" class="btn btn-info">Add Transaction</a>
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>Transaction ID</th>
-                <th>Student Name</th>
-                <th>Book Title</th>
-                <th>Date Borrowed</th>
-                <th>Due Date</th>
+    <br>
+    <br>
+    <?php
+    if (isset($_SESSION['delete'])) {
+        echo $_SESSION['delete']; //displaying session message
+        unset($_SESSION['delete']); //removing session message
+    }
 
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody id="myTable">
-            <tr>
-                <td>1</td>
-                <td>John</td>
-                <td>Doe</td>
-                <td>john@example.com</td>
-                <td>Doe</td>
+    ?>
+    <div id="result">
+        <table class="table table-bordered table-striped" id="table-data">
 
-                <td>
-                    <button class="btn-primary">Details</button>
-                    <button class="btn-secondary">Delete</button>
-                    <button class="btn-secondary">Returned</button>
-                </td>
+        </table>
 
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Mary</td>
-                <td>Moe</td>
-                <td>mary@mail.com</td>
-                <td>mary@mail.com</td>
-
-                <td>
-                    <button class="btn-primary">Details</button>
-                    <button class="btn-secondary">Delete</button>
-                    <button class="btn-secondary">Returned</button>
-                </td>
-
-
-            </tr>
-        </tbody>
-    </table>
-
-
+    </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        load_data();
 
+        function load_data(query) {
+            $.ajax({
+                url: "manage-borrow.php",
+                method: "post",
+                data: {
+                    query: query
+                },
+                success: function(data) {
+                    $('#result').html(data);
+                }
+            });
+        }
+
+        $('#search_text').keyup(function() {
+            var search = $(this).val();
+            if (search != '') {
+                load_data(search);
+            } else {
+                load_data();
+            }
+        });
+    });
+</script>
 <?php
 include('format/footer.php'); ?>

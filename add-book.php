@@ -78,22 +78,16 @@ if (isset($_POST['submit'])) {
     year = '$year',
     category = '$category'
         ";
-
-
-    // executing query and saving data into database
     $res = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 
     // check whether the data is inserted or not 
     if ($res == TRUE) {
-        echo "<script> alert('Book added successfully') 
-        window.location.href='home.php'</script>";
+        echo "<script> alert('Book Added succesfully') 
+        window.location.href='add-book.php'</script>";
 
         // exit();
     } else {
-        echo "failed to insert";
-
-        // header("location: add-book.php");
-        // exit();
+        echo "Failed";
     }
 }
 
