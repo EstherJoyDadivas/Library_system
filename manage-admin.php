@@ -2,27 +2,22 @@
 include 'dbconnect.php';
 $output = '';
 if (isset($_POST["query"])) {
-    $search = mysqli_real_escape_string($conn, $_POST["query"]);
-    $query = "SELECT * FROM admin
+	$search = mysqli_real_escape_string($conn, $_POST["query"]);
+	$query = "SELECT * FROM admin
 	WHERE firstname LIKE '%" . $search . "%' 
 	OR lastname LIKE '%" . $search . "%' 
 	OR username LIKE '%" . $search . "%' 
 	";
 } else {
-    $query = "SELECT * FROM admin";
+	$query = "SELECT * FROM admin";
 }
 $result = mysqli_query($conn, $query);
 if ($result == TRUE) {
 
-    $count = mysqli_num_rows($result);
+	$count = mysqli_num_rows($result);
 
-
-    if ($count > 0) {
-
-
-
-        // if (mysqli_num_rows($result) > 0) {
-        $output .= '<div class="table-responsive">
+	if ($count > 0) {
+		$output .= '<div class="table-responsive">
 					<table class="table table-bordered table-striped">
 					<thead>
 						<tr>
@@ -34,16 +29,16 @@ if ($result == TRUE) {
 						</tr>
 						</thead>
                         <tbody>';
-        // while ($row = mysqli_fetch_array($result)) {
-        while ($rows = mysqli_fetch_assoc($result)) {
 
-            $admin_id = $rows['admin_id'];
-            $firstname = $rows['firstname'];
-            $lastname = $rows['lastname'];
-            $username = $rows['username'];
-            $password = $rows['password'];
+		while ($rows = mysqli_fetch_assoc($result)) {
 
-            $output .= '
+			$admin_id = $rows['admin_id'];
+			$firstname = $rows['firstname'];
+			$lastname = $rows['lastname'];
+			$username = $rows['username'];
+			$password = $rows['password'];
+
+			$output .= '
 			<tr>
 			
 				<td>' . $firstname . '</td>
@@ -55,10 +50,10 @@ if ($result == TRUE) {
 			</td>
 			</tr>
 		';
-        }
-        $output .= "</tbody>";
-        echo $output;
-    } else {
-        echo 'Data Not Found';
-    }
+		}
+		$output .= "</tbody>";
+		echo $output;
+	} else {
+		echo 'Data Not Found';
+	}
 }

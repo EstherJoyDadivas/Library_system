@@ -4,7 +4,8 @@ include('format/sidebar.php');
 ?>
 
 <div class="container">
-    <h2 class="display-6">Update Book</h2>
+    <br>
+    <h1 class="text-center">Update Student</h1>
     <br>
     <?php
 
@@ -34,7 +35,7 @@ include('format/sidebar.php');
     <form action="" method="post">
         <table class="table table-bordered table-striped">
             <tr>
-                <th class="h2" scope="row">First name:</th>
+                <th scope="row">First name:</th>
                 <td>
                     <input type="text" name="firstname" value="<?= $firstname ?>" class="form-control">
                 </td>
@@ -60,7 +61,10 @@ include('format/sidebar.php');
 
         </table>
         <input type="hidden" name="student_id" value="<?= $student_id; ?>">
-        <input type="submit" name="submit" value="Save changes" class="btn-secondary">
+        <br>
+        <div class="text-center">
+            <input type="submit" name="submit" value="Save Changes" class="btn-secondary btn-lg">
+        </div>
     </form>
 
 </div>
@@ -69,13 +73,12 @@ include('format/sidebar.php');
 
 
 if (isset($_POST['submit'])) {
-    // get data from form
 
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
     $course = $_POST['course'];
     $section = $_POST['section'];
-    // sql query to save data to database
+
     $sql = "UPDATE student SET
                 firstname = '$firstname',
                 lastname = '$lastname',

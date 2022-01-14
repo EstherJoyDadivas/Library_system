@@ -71,9 +71,11 @@ if ($res == true) {
 }
 
 ?>
-<!-- home/managebooks -->
+
 <div class="container-fluid">
-    <h2>Transaction Details</h2>
+    <br>
+    <h1 class="text-center">Return Details</h1>
+    <br>
     <div class="row">
 
         <div class="col">
@@ -124,28 +126,24 @@ if ($res == true) {
                     <th>Book No:</th>
                     <td><?php echo $book_id  ?> </td>
                 </tr>
-
-
                 <tr>
                     <th>Title:</th>
-
                     <td><?php echo $title  ?> </td>
-
                 </tr>
                 <tr>
-                    <td>Author:</td>
+                    <th>Author:</th>
                     <td><?php echo $author  ?> </td>
                 </tr>
                 <tr>
-                    <td>Publisher:</td>
+                    <th>Publisher:</th>
                     <td><?php echo $publisher  ?> </td>
                 </tr>
                 <tr>
-                    <td>Published Year:</td>
+                    <th>Published Year:</th>
                     <td><?php echo $year  ?> </td>
                 </tr>
                 <tr>
-                    <td>Category:</td>
+                    <th>Category:</th>
                     <td><?php echo $category  ?></td>
                 </tr>
             </table>
@@ -154,8 +152,6 @@ if ($res == true) {
 
         </div>
     </div>
-    <!-- <input type="submit" name="Check" value="Check" class="btn-secondary">
-    <input type="submit" name="Borrow" value="Borrow" class="btn-secondary"> -->
     </form>
 </div>
 

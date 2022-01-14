@@ -3,20 +3,14 @@ include('format/header.php');
 include('format/sidebar.php');
 ?>
 
-<!-- ============================================================== -->
-<!-- Start Page Content here -->
-<!-- ============================================================== -->
-
-
-
-<!-- home/managebooks -->
 <div class="container">
-    <h2>Transactions</h2>
+    <br>
+    <h1>Transactions</h1>
 
     <input class="form-control" id="search_text" name="search_text" type="text" placeholder="Search..">
     <br>
 
-    <a href="add-borrow.php" class="btn btn-info">Add Transaction</a>
+    <a href="add-borrow.php" class="btn btn-primary btn-lg">Add Transaction</a>
     <br>
     <br>
     <div id="result">

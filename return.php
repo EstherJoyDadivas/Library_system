@@ -3,25 +3,17 @@ include('format/header.php');
 include('format/sidebar.php');
 ?>
 
-<!-- ============================================================== -->
-<!-- Start Page Content here -->
-<!-- ============================================================== -->
-
-
-
-<!-- home/managebooks -->
 <div class="container">
-    <h2>Return Details</h2>
+    <br>
+    <h1>Return Details</h1>
 
     <input class="form-control" id="search_text" name="search_text" type="text" placeholder="Search..">
-    <br>
     <br>
     <br>
     <div id="result">
         <table class="table table-bordered table-striped" id="table-data">
 
         </table>
-
     </div>
 </div>
 <script type="text/javascript">

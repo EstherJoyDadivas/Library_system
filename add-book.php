@@ -11,9 +11,9 @@ include('format/sidebar.php');
 
 <!-- home/managebooks -->
 <div class="container">
-    <h2>Add Book</h2>
     <br>
-
+    <h1 class="text-center">Add Book</h1>
+    <br>
     <form action="add-book.php" method="POST">
         <table class="table table-bordered table-striped">
             <tr>
@@ -23,37 +23,33 @@ include('format/sidebar.php');
                 </td>
             </tr>
             <tr>
-                <td>Author:</td>
+                <th>Author:</th>
                 <td>
-                    <input type="text" name="author" class="form-control" placeholder="Enter books author" required>
+                    <input type="text" name="author" class="form-control" placeholder="Enter book author" required>
                 </td>
             </tr>
             <tr>
-                <td>Publisher:</td>
+                <th>Publisher:</th>
                 <td>
                     <input type=" text" name="publisher" class="form-control" placeholder="Enter publisher" required>
                 </td>
             </tr>
             <tr>
-                <td>Published Year:</td>
+                <th>Published Year:</th>
                 <td>
                     <input type=" text" name="year" class="form-control" placeholder="Enter published year" required>
                 </td>
             </tr>
             <tr>
-                <td>Category:</td>
+                <th>Category:</th>
                 <td>
-                    <input type=" text" name="category" placeholder="Enter book category" required>
+                    <input type=" text" name="category" class="form-control" placeholder="Enter book category" required>
                 </td>
             </tr>
-            <!-- <tr>
-                <td colspan="2">
-                    <input type="submit" name="submit" value="Add Book" class="btn-secondary">
-                </td>
-            </tr> -->
-
         </table>
-        <input type="submit" name="submit" value="Add Book" class="btn-secondary">
+        <div class="text-center">
+            <input type="submit" name="submit" value="Add Book" class="btn-secondary btn-lg">
+        </div>
     </form>
 
 </div>

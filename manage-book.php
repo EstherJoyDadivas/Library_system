@@ -17,13 +17,7 @@ $result = mysqli_query($conn, $query);
 if ($result == TRUE) {
 
 	$count = mysqli_num_rows($result);
-
-
 	if ($count > 0) {
-
-
-
-		// if (mysqli_num_rows($result) > 0) {
 		$output .= '<div class="table-responsive">
 					<table class="table table-bordered table-striped">
 					<thead>
@@ -38,7 +32,7 @@ if ($result == TRUE) {
 						</tr>
 						</thead>
                         <tbody>';
-		// while ($row = mysqli_fetch_array($result)) {
+
 		while ($rows = mysqli_fetch_assoc($result)) {
 
 			$book_id = $rows['book_id'];

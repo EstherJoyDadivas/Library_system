@@ -3,14 +3,13 @@ include 'dbconnect.php';
 $output = '';
 if (isset($_POST["query"])) {
     $search = mysqli_real_escape_string($conn, $_POST["query"]);
-    $query = "SELECT * FROM transaction
-	WHERE book_id LIKE '%" . $search . "%' 
-	OR student_id LIKE '%" . $search . "%' 
+    $query = "SELECT * FROM transaction WHERE status = 'returned' AND (book_id LIKE '%" . $search . "%' 
+    OR student_id LIKE '%" . $search . "%' 
 	OR date_borrowed LIKE '%" . $search . "%' 
-	OR date_due LIKE '%" . $search . "%' 
+	OR date_due LIKE '%" . $search . "%') 
 	";
 } else {
-    $query = "SELECT * FROM transaction where status = 'returned'";
+    $query = "SELECT * FROM transaction WHERE status = 'returned'";
 }
 $result = mysqli_query($conn, $query);
 if ($result == TRUE) {
@@ -24,7 +23,6 @@ if ($result == TRUE) {
 					<table class="table table-bordered table-striped">
 					<thead>
 						<tr>
-						
 							<th>Book ID</th>
 							<th>Student ID</th>
 							<th>Date Borrowed</th>

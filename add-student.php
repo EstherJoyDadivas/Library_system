@@ -3,7 +3,8 @@ include('format/header.php');
 include('format/sidebar.php');
 ?>
 <div class="container">
-    <h2>Add Student</h2>
+    <br>
+    <h1 class="text-center">Add Student</h1>
     <br>
 
     <form action="" method="POST">
@@ -11,32 +12,35 @@ include('format/sidebar.php');
             <tr>
                 <th>First Name:</th>
                 <td>
-                    <input type="text" name="firstname" class="form-control" placeholder="Enter book firstname" required>
+                    <input type="text" name="firstname" class="form-control" placeholder="Enter book first name" required>
                 </td>
             </tr>
             <tr>
-                <td>last Name:</td>
+                <th>last Name:</th>
                 <td>
-                    <input type="text" name="lastname" class="form-control" placeholder="Enter books lastname" required>
+                    <input type="text" name="lastname" class="form-control" placeholder="Enter books last name" required>
                 </td>
             </tr>
             <tr>
-                <td>Course:</td>
+                <th>Course:</th>
                 <td>
                     <input type=" text" name="course" class="form-control" placeholder="Enter course" required>
                 </td>
             </tr>
             <tr>
-                <td>Section</td>
+                <th>Section</th>
                 <td>
-                    <input type="text" name="section" class="form-control" placeholder="Enter published section" required>
+                    <input type="text" name="section" class="form-control" placeholder="Enter section" required>
                 </td>
             </tr>
 
 
 
         </table>
-        <input type="submit" name="submit" value="Add Student" class="btn-secondary">
+
+        <div class="text-center">
+            <input type="submit" name="submit" value="Add Student" class="btn-secondary btn-lg">
+        </div>
     </form>
 
 </div>
@@ -46,13 +50,11 @@ include('format/footer.php');
 
 if (isset($_POST['submit'])) {
 
-    // get data from form
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
     $course = $_POST['course'];
     $section = $_POST['section'];
 
-    // sql query to save data to database
     $sql = "INSERT INTO student SET
     firstname = '$firstname',
     lastname = '$lastname',
@@ -61,7 +63,6 @@ if (isset($_POST['submit'])) {
         ";
     $res = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 
-    // check whether the data is inserted or not 
     if ($res == TRUE) {
         echo "<script> alert('New Student Account Added') 
         window.location.href='students.php'</script>";

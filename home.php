@@ -3,32 +3,25 @@ include('format/header.php');
 include('format/sidebar.php');
 ?>
 
-<!-- ============================================================== -->
-<!-- Start Page Content here -->
-<!-- ============================================================== -->
-
-
-
-<!-- home/managebooks -->
 <div class="container">
-    <h2>Manage Books</h2>
+    <br>
+    <h1>Manage Books</h1>
 
     <input class="form-control" id="search_text" name="search_text" type="text" placeholder="Search..">
     <br>
 
-    <a href="add-book.php" class="btn btn-info">Add Book</a>
+    <a href="add-book.php" class="btn btn-primary btn-lg">Add Book</a>
     <br>
     <br>
     <?php
     if (isset($_SESSION['delete'])) {
-        echo $_SESSION['delete']; //displaying session message
-        unset($_SESSION['delete']); //removing session message
+        echo $_SESSION['delete'];
+        unset($_SESSION['delete']);
     }
 
     ?>
     <div id="result">
         <table class="table table-bordered table-striped" id="table-data">
-
         </table>
 
     </div>

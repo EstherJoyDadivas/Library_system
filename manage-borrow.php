@@ -14,15 +14,8 @@ if (isset($_POST["query"])) {
 }
 $result = mysqli_query($conn, $query);
 if ($result == TRUE) {
-
 	$count = mysqli_num_rows($result);
-
-
 	if ($count > 0) {
-
-
-
-		// if (mysqli_num_rows($result) > 0) {
 		$output .= '<div class="table-responsive">
 					<table class="table table-bordered table-striped">
 					<thead>
@@ -36,7 +29,6 @@ if ($result == TRUE) {
 						</tr>
 						</thead>
                         <tbody>';
-		// while ($row = mysqli_fetch_array($result)) {
 		while ($rows = mysqli_fetch_assoc($result)) {
 
 			$tran_id = $rows['tran_id'];
@@ -44,13 +36,10 @@ if ($result == TRUE) {
 			$student_id = $rows['student_id'];
 			$date_borrowed = $rows['date_borrowed'];
 			$date_due = $rows['date_due'];
-
-
 			$output .= '
-			<tr>
-			
-				<td>' . $tran_id  . '</td>
-				<td>' . $book_id . '</td>
+			<tr>	
+				<td>' . $book_id  . '</td>
+				<td>' . $student_id . '</td>
 				<td>' . $date_borrowed . '</td>
 				<td>' . $date_due . '</td>
 				<td>

@@ -1,14 +1,14 @@
 <?php
 include('dbconnect.php');
 if (!isset($_POST['username'], $_POST['password'])) {
-    exit('Please fill both the username and password fields!');
+    echo ' <script> Please fill both the username and password fields! </script>';
 }
 
 $username = $_POST['username'];
 $password = $_POST['password'];
 
 if ($username == "" || $password == "") {
-    echo "please fill up";
+    echo "<script> Please fill both the username and password fields! </script>";
     exit();
 }
 $Query = "SELECT admin_id FROM admin WHERE username = '$username' AND password = '$password'";

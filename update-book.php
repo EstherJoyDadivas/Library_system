@@ -4,7 +4,8 @@ include('format/sidebar.php');
 ?>
 
 <div class="container">
-    <h2 class="display-6">Update Book</h2>
+    <br>
+    <h1 class="text-center">Update Book</h1>
     <br>
     <?php
 
@@ -36,7 +37,7 @@ include('format/sidebar.php');
     <form action="" method="post">
         <table class="table table-bordered table-striped">
             <tr>
-                <th class="h2" scope="row">Title:</th>
+                <th scope="row">Title:</th>
                 <td>
                     <input type="text" name="title" value="<?= $title ?>" class="form-control">
                 </td>
@@ -68,7 +69,10 @@ include('format/sidebar.php');
 
         </table>
         <input type="hidden" name="book_id" value="<?= $book_id; ?>">
-        <input type="submit" name="submit" value="Save changes" class="btn-secondary">
+        <br>
+        <div class="text-center">
+            <input type="submit" name="submit" value="Save Changes" class="btn-secondary btn-lg">
+        </div>
     </form>
 
 </div>

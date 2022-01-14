@@ -2,27 +2,26 @@
 include 'dbconnect.php';
 $output = '';
 if (isset($_POST["query"])) {
-    $search = mysqli_real_escape_string($conn, $_POST["query"]);
-    $query = "SELECT * FROM student
+	$search = mysqli_real_escape_string($conn, $_POST["query"]);
+	$query = "SELECT * FROM student
 	WHERE firstname LIKE '%" . $search . "%' 
 	OR lastname LIKE '%" . $search . "%' 
 	OR course LIKE '%" . $search . "%' 
 	OR section LIKE '%" . $search . "%' 
 	";
 } else {
-    $query = "SELECT * FROM student";
+	$query = "SELECT * FROM student";
 }
 $result = mysqli_query($conn, $query);
 if ($result == TRUE) {
 
-    $count = mysqli_num_rows($result);
-    if ($count > 0) {
+	$count = mysqli_num_rows($result);
+	if ($count > 0) {
 
-        $output .= '<div class="table-responsive">
+		$output .= '<div class="table-responsive">
 					<table class="table table-bordered table-striped">
 					<thead>
-						<tr>
-						
+						<tr>					
 							<th>First Name</th>
 							<th>Last Name</th>
 							<th>Course</th>
@@ -32,15 +31,15 @@ if ($result == TRUE) {
 						</thead>
                         <tbody>';
 
-        while ($rows = mysqli_fetch_assoc($result)) {
+		while ($rows = mysqli_fetch_assoc($result)) {
 
-            $student_id = $rows['student_id'];
-            $firstname = $rows['firstname'];
-            $lastname = $rows['lastname'];
-            $course = $rows['course'];
-            $section = $rows['section'];
+			$student_id = $rows['student_id'];
+			$firstname = $rows['firstname'];
+			$lastname = $rows['lastname'];
+			$course = $rows['course'];
+			$section = $rows['section'];
 
-            $output .= '
+			$output .= '
 			<tr>
 			
 				<td>' . $firstname . '</td>
@@ -54,10 +53,10 @@ if ($result == TRUE) {
 			</td>
 			</tr>
 		';
-        }
-        $output .= "</tbody>";
-        echo $output;
-    } else {
-        echo 'Data Not Found';
-    }
+		}
+		$output .= "</tbody>";
+		echo $output;
+	} else {
+		echo 'Data Not Found';
+	}
 }

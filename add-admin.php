@@ -3,7 +3,8 @@ include('format/header.php');
 include('format/sidebar.php');
 ?>
 <div class="container">
-    <h2>Add Book</h2>
+    <br>
+    <h1 class="text-center">Add Admin</h1>
     <br>
 
     <form action="" method="POST">
@@ -11,32 +12,34 @@ include('format/sidebar.php');
             <tr>
                 <th>First Name:</th>
                 <td>
-                    <input type="text" name="firstname" class="form-control" placeholder="Enter book firstname" required>
+                    <input type="text" name="firstname" class="form-control" placeholder="Enter first name" required>
                 </td>
             </tr>
             <tr>
-                <td>last Name:</td>
+                <th>Last Name:</th>
                 <td>
-                    <input type="text" name="lastname" class="form-control" placeholder="Enter books lastname" required>
+                    <input type="text" name="lastname" class="form-control" placeholder="Enter last name" required>
                 </td>
             </tr>
             <tr>
-                <td>Username:</td>
+                <th>Username:</th>
                 <td>
                     <input type=" text" name="username" class="form-control" placeholder="Enter username" required>
                 </td>
             </tr>
             <tr>
-                <td>Password</td>
+                <th>Password</th>
                 <td>
-                    <input type="text" name="password" class="form-control" placeholder="Enter published password" required>
+                    <input type="text" name="password" class="form-control" placeholder="Enter password" required>
                 </td>
             </tr>
 
 
 
         </table>
-        <input type="submit" name="submit" value="Add Admin" class="btn-secondary">
+        <div class="text-center">
+            <input type="submit" name="submit" value="Add Admin" class="btn-secondary btn-lg">
+        </div>
     </form>
 
 </div>
@@ -45,14 +48,10 @@ include('format/sidebar.php');
 include('format/footer.php');
 
 if (isset($_POST['submit'])) {
-
-    // get data from form
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
     $username = $_POST['username'];
     $password = $_POST['password'];
-
-    // sql query to save data to database
     $sql = "INSERT INTO admin SET
     firstname = '$firstname',
     lastname = '$lastname',
@@ -61,12 +60,9 @@ if (isset($_POST['submit'])) {
         ";
     $res = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 
-    // check whether the data is inserted or not 
     if ($res == TRUE) {
         echo "<script> alert('New Admin Account Added') 
         window.location.href='admin.php'</script>";
-
-        // exit();
     } else {
         echo "<script> alert('Failed') 
        </script>";

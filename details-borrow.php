@@ -70,11 +70,12 @@ if ($res == true) {
 }
 
 ?>
-<!-- home/managebooks -->
-<div class="container-fluid">
-    <h2>Transaction Details</h2>
-    <div class="row">
 
+<div class="container-fluid">
+    <br>
+    <h1 class="text-center">Transaction Details</h1>
+    <br>
+    <div class="row">
         <div class="col">
             <form action="" method="POST">
                 <br>
@@ -91,7 +92,6 @@ if ($res == true) {
                         <th>Student No:</th>
                         <td><?php echo $student_id  ?> </td>
                     </tr>
-
                     <tr>
                         <th>Student First Name: </th>
                         <td><?php echo $firstname  ?> </td>
@@ -123,38 +123,29 @@ if ($res == true) {
                     <th>Book No:</th>
                     <td><?php echo $book_id  ?> </td>
                 </tr>
-
-
                 <tr>
                     <th>Title:</th>
-
                     <td><?php echo $title  ?> </td>
-
                 </tr>
                 <tr>
-                    <td>Author:</td>
+                    <th>Author:</th>
                     <td><?php echo $author  ?> </td>
                 </tr>
                 <tr>
-                    <td>Publisher:</td>
+                    <th>Publisher:</th>
                     <td><?php echo $publisher  ?> </td>
                 </tr>
                 <tr>
-                    <td>Published Year:</td>
+                    <th>Published Year:</th>
                     <td><?php echo $year  ?> </td>
                 </tr>
                 <tr>
-                    <td>Category:</td>
+                    <th>Category:</th>
                     <td><?php echo $category  ?></td>
                 </tr>
             </table>
-
-
-
         </div>
     </div>
-    <!-- <input type="submit" name="Check" value="Check" class="btn-secondary">
-    <input type="submit" name="Borrow" value="Borrow" class="btn-secondary"> -->
     </form>
 </div>
 
